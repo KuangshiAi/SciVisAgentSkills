@@ -15,8 +15,8 @@ Agent skills for scientific visualization with ParaView. These skills trying to 
 ### Quick Install
 
 ```bash
-# Clone into your Claude Code skills directory
-git clone https://github.com/TouKaienn/Paraview-Skill.git ~/.claude/skills/paraview
+# Link your local clone into Claude Code skills directory
+ln -s "$(pwd)" ~/.claude/skills/paraview
 ```
 
 ### Manual Install
