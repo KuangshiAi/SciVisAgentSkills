@@ -76,3 +76,12 @@ For any VMD or molecular dynamics task, follow the instructions in skills/vmd-md
 For any TTK task, follow the instructions in skills/ttk-viz.md.
 For any ParaView task, follow the instructions in skills/paraview-viz.md.
 ```
+
+---
+
+## Acknowledgements
+
+The ParaView skill in this repository builds on and was inspired by the following projects:
+
+- [Paraview-Skills](https://github.com/TouKaienn/Paraview-Skills) — a collection of ParaView agent skills that informed the structure and content of the ParaView skill here.
+- [paraview_mcp](https://github.com/llnl/paraview_mcp) — an MCP server for ParaView developed at LLNL, which provided valuable reference for ParaView automation patterns.
