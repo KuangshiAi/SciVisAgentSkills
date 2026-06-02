@@ -1,17 +1,17 @@
 # SciVisAgentSkills
 
-This repository provides **agent skills** for four scientific visualization tools: **ParaView**, **napari**, **VMD** (MD Analysis), and **TTK** (Topology Analysis). Skills are Markdown files that embed tool-specific expertise — environment setup, headless rendering, API patterns, and error handling — directly into AI coding agents. The skills can be used to evaluate agents with and without skill augmentation on [SciVisAgentBench](https://scivisagentbench.github.io/).
+This repository provides **agent skills** for four scientific visualization tools: **ParaView**, **napari**, **VMD** (MD Analysis), and **TTK** (Topology Analysis). Each skill is a self-contained package that embeds tool-specific expertise — environment setup, headless rendering, API patterns, and error handling — directly into AI coding agents. Every skill follows the same [Claude Agent Skill](https://docs.anthropic.com/en/docs/claude-code/skills) layout: a `SKILL.md` file with YAML frontmatter (`name` + a trigger `description`) followed by the procedural body, with optional `references/` files for larger API surfaces (used by the ParaView skill). The skills can be used to evaluate agents with and without skill augmentation on [SciVisAgentBench](https://scivisagentbench.github.io/).
 
 ---
 
 ## Available Skills
 
-| Skill file | Tool |
+| Skill package | Tool |
 |---|---|
 | `paraview-viz/SKILL.md` | ParaView (large-scale scientific visualization) |
-| `napari-viz.md` | Napari (biology image visualization) |
-| `vmd-mdanalysis-viz.md` | VMD + MD Analysis (molecular dynamics) |
-| `ttk-viz.md` | TTK (topological data analysis) |
+| `napari-viz/SKILL.md` | napari (bioimage / microscopy visualization) |
+| `vmd-mdanalysis-viz/SKILL.md` | VMD + MDAnalysis + GROMACS (molecular dynamics) |
+| `ttk-viz/SKILL.md` | TTK (topological data analysis) |
 
 ---
 
@@ -39,42 +39,35 @@ This repository provides **agent skills** for four scientific visualization tool
 
 ### Claude Code
 
-Skills install to `~/.claude/commands/` and become available as slash commands (e.g. `/napari-viz`).
+Each skill is a directory; install by linking (or copying) the package into the Claude Code skills directory. Claude Code then loads each skill via progressive disclosure and auto-invokes it based on the `description` in the YAML frontmatter.
 
 ```bash
-cp napari-viz.md ~/.claude/commands/napari-viz.md
-cp vmd-mdanalysis-viz.md ~/.claude/commands/vmd-mdanalysis-viz.md
-cp ttk-viz.md ~/.claude/commands/ttk-viz.md
-cp paraview-viz/SKILL.md ~/.claude/commands/paraview-viz.md
-```
-
-To auto-trigger skills, add to the project `CLAUDE.md`:
-
-```
-For any napari visualization task, automatically invoke /napari-viz with the task description.
-For any VMD or molecular dynamics task, automatically invoke /vmd-mdanalysis-viz with the task description.
-For any TTK or topological data analysis task, automatically invoke /ttk-viz with the task description.
-For any ParaView visualization task, automatically invoke /paraview-viz with the task description.
+# Link each skill package into the Claude Code skills directory
+ln -s "$(pwd)/paraview-viz"        ~/.claude/skills/paraview-viz
+ln -s "$(pwd)/napari-viz"          ~/.claude/skills/napari-viz
+ln -s "$(pwd)/vmd-mdanalysis-viz"  ~/.claude/skills/vmd-mdanalysis-viz
+ln -s "$(pwd)/ttk-viz"             ~/.claude/skills/ttk-viz
 ```
 
 ### Codex
 
-Place skill files where the agent can read them, then reference them in `AGENTS.md`:
+Codex has no native skill loader, so place the `SKILL.md` files where the agent can read them and reference them from `AGENTS.md`:
 
 ```bash
-cp napari-viz.md <project>/skills/napari-viz.md
-cp vmd-mdanalysis-viz.md <project>/skills/vmd-mdanalysis-viz.md
-cp ttk-viz.md <project>/skills/ttk-viz.md
-cp paraview-viz/SKILL.md <project>/skills/paraview-viz.md
+mkdir -p <project>/skills
+cp paraview-viz/SKILL.md       <project>/skills/paraview-viz.md
+cp napari-viz/SKILL.md         <project>/skills/napari-viz.md
+cp vmd-mdanalysis-viz/SKILL.md <project>/skills/vmd-mdanalysis-viz.md
+cp ttk-viz/SKILL.md            <project>/skills/ttk-viz.md
 ```
 
 Add to `AGENTS.md`:
 
 ```
+For any ParaView visualization task, follow the instructions in skills/paraview-viz.md.
 For any napari visualization task, follow the instructions in skills/napari-viz.md.
 For any VMD or molecular dynamics task, follow the instructions in skills/vmd-mdanalysis-viz.md.
-For any TTK task, follow the instructions in skills/ttk-viz.md.
-For any ParaView task, follow the instructions in skills/paraview-viz.md.
+For any TTK or topological data analysis task, follow the instructions in skills/ttk-viz.md.
 ```
 
 ---

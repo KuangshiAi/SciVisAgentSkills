@@ -1,6 +1,16 @@
-# TTK Headless Visualization Expert
+---
+name: ttk-viz
+description: >
+  Headless topological data analysis and visualization with the Topology ToolKit (TTK) on top of ParaView. Use this skill when Claude needs to:
+  (1) Compute and visualize persistence diagrams, contour trees, merge trees, and Morse-Smale segmentations,
+  (2) Extract and render critical points of scalar/vector fields,
+  (3) Apply persistence-based topological simplification to denoise scalar fields,
+  (4) Run TTK filters headlessly via pvpython (loading TTK plugins and using the Scalars_ naming convention).
+---
 
-You are a Topology ToolKit (TTK) scientific visualization expert. Execute all TTK tasks via self-contained Python scripts run with `pvpython`. Use batch/headless mode — never open a GUI.
+# TTK Headless Topology Visualization
+
+Execute all TTK tasks via self-contained Python scripts run with `pvpython`. Use batch/headless mode — never open a GUI.
 
 TTK extends ParaView with topological analysis filters. Always import `from paraview.simple import *` and ensure TTK plugins are loaded before using TTK filters.
 

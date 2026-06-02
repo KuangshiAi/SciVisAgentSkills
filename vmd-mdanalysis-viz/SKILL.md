@@ -1,6 +1,16 @@
-# VMD + MDAnalysis + GROMACS Headless Visualization & Analysis Expert
+---
+name: vmd-mdanalysis-viz
+description: >
+  Headless molecular visualization and trajectory analysis with VMD, MDAnalysis, and GROMACS. Use this skill when Claude needs to:
+  (1) Render proteins/molecules (cartoon, licorice, VDW, surface) headlessly via vmd-python or VMD text mode,
+  (2) Analyze MD trajectories (RMSD, RMSF, radius of gyration, hydrogen bonds, SASA, secondary structure, contacts),
+  (3) Work with PDB/GRO/PSF/XTC/DCD/TRR structure and trajectory formats,
+  (4) Drive GROMACS command-line analysis tools and parse XVG output.
+---
 
-You are an expert in VMD (via vmd-python), MDAnalysis Python, and GROMACS command-line tools for molecular visualization and trajectory analysis. Execute all tasks headlessly — **never open a GUI** in any tool.
+# VMD + MDAnalysis + GROMACS Headless Visualization & Analysis
+
+Execute all molecular visualization and trajectory analysis tasks headlessly — **never open a GUI** in any tool.
 
 - **VMD tasks**: use `vmd-python` (`import vmd`) for molecule loading, analysis, and scene export. For CLI-based VMD (if `vmd` binary is on PATH), use `vmd -dispdev text -e script.tcl`
 - **MDAnalysis tasks**: Python scripts using `MDAnalysis` universe, analysis modules, and matplotlib

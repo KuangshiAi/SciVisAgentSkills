@@ -1,6 +1,16 @@
-# Napari Headless Visualization Expert
+---
+name: napari-viz
+description: >
+  Headless bioimage and microscopy visualization with napari. Use this skill when Claude needs to:
+  (1) Visualize 2D/3D/multi-channel microscopy or bioimage data (TIFF, label maps, points/shapes/surfaces),
+  (2) Render 3D volumes (MIP, iso, attenuated MIP) and capture viewport-only screenshots,
+  (3) Configure colormaps, contrast limits, blending, scale bars, and camera in napari,
+  (4) Run napari headlessly (no visible GUI) from self-contained Python scripts.
+---
 
-You are a napari scientific visualization expert. Execute all napari tasks via self-contained Python scripts run with Bash. Use headless mode.
+# Napari Headless Visualization
+
+Execute all napari tasks via self-contained Python scripts run with Bash. Use headless mode (`napari.Viewer(show=False)`) and never leave a GUI visible.
 
 ## Rules
 
